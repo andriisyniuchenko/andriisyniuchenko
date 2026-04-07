@@ -8,7 +8,7 @@ Currently building real-world projects and improving my backend skills.
 ## 🚀 About Me
 
 - 💻 Backend developer (Python / Go)
-- 📍 Based in Washington, USA
+- 📍 Based in Seattle, Washington, USA
 - 🔄 Actively improving skills and preparing for backend roles
 - ⚙️ Focused on building practical backend systems (APIs, services, databases)
 
