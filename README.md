@@ -27,7 +27,7 @@ Currently building real-world projects and improving my backend skills.
 ## 📌 Projects
 
 
-### 🚗 Auto Dealer CRM [Go to repository](https://github.com/andriisyniuchenko/auto_dealer_crm)
+### 🚗 [Auto Dealer CRM](https://github.com/andriisyniuchenko/auto_dealer_crm)
 
 A backend system designed to simulate a real dealership workflow.  
 The goal of this project is to model how leads are managed, assigned, and converted into deals inside a sales team.
@@ -43,7 +43,7 @@ This project focuses on backend design, data relationships, and real business lo
 
 ---
 
-### 📬 Notification Service [Go to repository](https://github.com/andriisyniuchenko/notification-service)
+### 📬 [Notification Service](https://github.com/andriisyniuchenko/notification-service)
 
 A service responsible for sending notifications (email/SMS) using asynchronous processing.
 
@@ -59,7 +59,7 @@ The goal is to understand how real systems handle delayed and high-volume tasks.
 
 ---
 
-### 💳 Subscription Tracker [Go to repository](https://github.com/andriisyniuchenko/subscription-tracker)
+### 💳 [Subscription Tracker](https://github.com/andriisyniuchenko/subscription-tracker)
 
 A simple backend application for managing user subscriptions and recurring payments.
 
