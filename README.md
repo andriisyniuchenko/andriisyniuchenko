@@ -3,7 +3,7 @@
 Backend developer based in Seattle, WA.  
 Focused on Python (FastAPI, Django) and Go — building production-oriented backend systems with real business logic.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/YOUR_LINKEDIN_HERE)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/andrii-syniuchenko-54738a1b1/)
 
 ---
 
