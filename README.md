@@ -1,76 +1,75 @@
-# Hi, I'm Andrii 👋
+# Andrii Syniuchenko
 
-Backend developer focused on Python (FastAPI/Django).  
-Currently building real-world projects and improving my backend skills.
+Backend developer based in Seattle, WA.  
+Focused on Python (FastAPI, Django) and Go — building production-oriented backend systems with real business logic.
 
----
-
-## 🚀 About Me
-
-- 💻 Backend developer (Python / Go)
-- 📍 Based in Seattle, Washington, USA
-- 🔄 Actively improving skills and preparing for backend roles
-- ⚙️ Focused on building practical backend systems (APIs, services, databases)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/andrii-syniuchenko-54738a1b1/)
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack
 
-- **Languages:** Python, Go
-- **Backend:** FastAPI, Django
-- **Database:** PostgreSQL, SQLAlchemy
-- **Tools:** Docker, Git, Linux
-- **Other:** REST APIs, JWT Authentication, OpenAPI (Swagger), Celery, Redis
-
----
-
-## 📌 Projects
-
-
-### 🚗 [Auto Dealer CRM](https://github.com/andriisyniuchenko/auto_dealer_crm)
-
-A backend system designed to simulate a real dealership workflow.  
-The goal of this project is to model how leads are managed, assigned, and converted into deals inside a sales team.
-
-The system includes:
-- Role-based access (manager, salesperson)
-- Lead distribution and shared ownership between salespeople
-- Tracking active, sold, and inactive leads separately
-- Authentication and protected endpoints (JWT)
-- Structured architecture (services, routers, models)
-
-This project focuses on backend design, data relationships, and real business logic rather than UI.
+**Languages:** Python · Go  
+**Frameworks:** FastAPI · Django  
+**Databases:** PostgreSQL · Redis  
+**Infrastructure:** Docker · Docker Compose · Linux  
+**Tools & Patterns:** SQLAlchemy · Alembic · Celery · JWT · REST API · OpenAPI (Swagger)
 
 ---
 
-### 📬 [Notification Service](https://github.com/andriisyniuchenko/notification-service)
+## Projects
 
-A service responsible for sending notifications (email/SMS) using asynchronous processing.
+### [Auto Dealer CRM](https://github.com/andriisyniuchenko/auto_dealer_crm)
+> FastAPI · PostgreSQL · SQLAlchemy · Alembic · JWT
 
-Built as a separate system that mimics how real production services handle background jobs.
+Backend CRM system that models how a real dealership sales team operates — from lead intake to closed deals.
 
-Key ideas behind this project:
-- Decoupling request handling from execution (queue-based system)
-- Using Celery + Redis for background task processing
-- Ability to scale workers independently from the API
-- Dockerized environment for easier deployment and consistency
+- Role-based access control (General Manager, Manager, Finance Manager, Salesperson)
+- Lead assignment, shared ownership (50/50 split), and stale lead detection
+- Full lead timeline: notes, activities, appointments, deal history
+- Split deal credit system with per-salesperson statistics
+- Manager-controlled user registration — no public sign-up
+- Structured architecture: routers / services / models / schemas
 
-The goal is to understand how real systems handle delayed and high-volume tasks.
+---
+
+### [Notification Service](https://github.com/andriisyniuchenko/notification-service)
+> FastAPI · Celery · Redis · PostgreSQL · Docker
+
+Standalone async notification service for email and SMS delivery — built to mirror how real production systems handle background job queues.
+
+- Decoupled request handling from execution via Celery + Redis
+- Workers scale independently from the API layer
+- Fully containerized with Docker Compose
+- Email templates with HTML rendering
 
 ---
 
-### 💳 [Subscription Tracker](https://github.com/andriisyniuchenko/subscription-tracker)
+### [Geo Driver Finder](https://github.com/andriisyniuchenko/geo-driver-finder)
+> Go · Docker
 
-A simple backend application for managing user subscriptions and recurring payments.
+HTTP service written in Go that finds the nearest available driver based on GPS coordinates.
 
-This project focuses on clean API design and basic business logic.
-
-Main features:
-- CRUD operations for subscriptions
-- Tracking active and expired subscriptions
-- PostgreSQL database with structured models
-- Clear and minimal architecture
-
-Built to practice writing clean, maintainable backend code without unnecessary complexity.
+- Geolocation-based driver lookup by latitude/longitude
+- Lightweight and fast by design — built in Go to explore performance-oriented backend development
+- Dockerized for easy deployment
 
 ---
+
+### [Subscription Tracker](https://github.com/andriisyniuchenko/subscription-tracker)
+> Django · PostgreSQL · Docker
+
+Django backend for tracking personal subscriptions and recurring expenses.
+
+- User authentication and per-user data isolation
+- Full CRUD for subscriptions with active/expired tracking
+- Monthly cost dashboard
+- Seed script for demo data
+
+---
+
+## About
+
+I have a background in IT and am actively returning to backend development — building projects that go beyond tutorials and reflect the kinds of systems I'd work on in a real team.
+
+Open to backend and full-stack roles. Feel free to reach out on LinkedIn.
