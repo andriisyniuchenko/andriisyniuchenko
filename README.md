@@ -3,13 +3,13 @@
 Backend developer based in Seattle, WA.  
 Focused on Python (FastAPI, Django) and Go — building production-oriented backend systems with real business logic.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/andrii-syniuchenko-54738a1b1/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/YOUR_LINKEDIN_HERE)
 
 ---
 
 ## Tech Stack
 
-**Languages:** Python
+**Languages:** Python  
 **Frameworks:** FastAPI · Django  
 **Databases:** PostgreSQL · Redis  
 **Infrastructure:** Docker · Docker Compose · Linux  
@@ -36,12 +36,14 @@ Backend CRM system that models how a real dealership sales team operates — fro
 ### [Notification Service](https://github.com/andriisyniuchenko/notification-service)
 > FastAPI · Celery · Redis · PostgreSQL · Docker
 
-Standalone async notification service for email and SMS delivery — built to mirror how real production systems handle background job queues.
+Standalone async notification service for email, SMS, and push delivery — built to mirror how real production systems handle background job queues.
 
-- Decoupled request handling from execution via Celery + Redis
+- API accepts a request, saves it as `pending`, and immediately returns — Celery worker processes it asynchronously
+- Notification status machine: `pending → retrying → sent / failed`
+- Retry logic: up to 3 attempts with 5-second delay; intentional 10% failure rate to demonstrate retry behavior
 - Workers scale independently from the API layer
-- Fully containerized with Docker Compose
-- Email templates with HTML rendering
+- Minimal live UI that polls status updates every 3 seconds without page reload
+- Fully containerized with Docker Compose (web, worker, db, redis)
 
 ---
 
