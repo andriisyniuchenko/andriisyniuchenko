@@ -9,7 +9,7 @@ Focused on Python (FastAPI, Django) and Go — building production-oriented back
 
 ## Tech Stack
 
-**Languages:** Python · Go  
+**Languages:** Python
 **Frameworks:** FastAPI · Django  
 **Databases:** PostgreSQL · Redis  
 **Infrastructure:** Docker · Docker Compose · Linux  
