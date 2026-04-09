@@ -1,9 +1,9 @@
 # Andrii Syniuchenko
 
 Backend developer based in Seattle, WA.  
-Focused on Python (FastAPI, Django) and Go — building production-oriented backend systems with real business logic.
+Focused on Python (FastAPI, Django) — building production-oriented backend systems with real business logic.
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/andrii-syniuchenko-54738a1b1/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](www.linkedin.com/in/andrii-syniuchenko-54738a1b1)
 
 ---
 
@@ -30,6 +30,7 @@ Backend CRM system that models how a real dealership sales team operates — fro
 - Split deal credit system with per-salesperson statistics
 - Manager-controlled user registration — no public sign-up
 - Structured architecture: routers / services / models / schemas
+- 43 pytest tests covering auth, RBAC, and business logic — GitHub Actions CI runs on every push
 
 ---
 
