@@ -48,17 +48,6 @@ Standalone async notification service for email, SMS, and push delivery — buil
 
 ---
 
-### [Geo Driver Finder](https://github.com/andriisyniuchenko/geo-driver-finder)
-> Go · Docker
-
-HTTP service written in Go that finds the nearest available driver based on GPS coordinates.
-
-- Geolocation-based driver lookup by latitude/longitude
-- Lightweight and fast by design — built in Go to explore performance-oriented backend development
-- Dockerized for easy deployment
-
----
-
 ### [Subscription Tracker](https://github.com/andriisyniuchenko/subscription-tracker)
 > Django · PostgreSQL · Docker
 
