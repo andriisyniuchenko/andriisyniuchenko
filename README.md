@@ -24,6 +24,7 @@ Focused on Python (FastAPI, Django) — building production-oriented backend sys
 
 Backend CRM system that models how a real dealership sales team operates — from lead intake to closed deals.
 
+📹 [Watch demo video](https://youtu.be/8uaZtSdtifc)
 - Role-based access control (General Manager, Manager, Finance Manager, Salesperson)
 - Lead assignment, shared ownership (50/50 split), and stale lead detection
 - Full lead timeline: notes, activities, appointments, deal history
