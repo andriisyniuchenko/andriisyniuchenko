@@ -1,5 +1,4 @@
 # Andrii Syniuchenko
-
 Backend developer based in Seattle, WA.  
 Focused on Python (FastAPI, Django) — building production-oriented backend systems with real business logic.
 
@@ -11,20 +10,28 @@ Focused on Python (FastAPI, Django) — building production-oriented backend sys
 
 **Languages:** Python  
 **Frameworks:** FastAPI · Django  
-**Databases:** PostgreSQL · Redis  
+**Databases:** PostgreSQL · Redis · ChromaDB  
 **Infrastructure:** Docker · Docker Compose · Linux  
-**Tools & Patterns:** SQLAlchemy · Alembic · Celery · JWT · REST API · OpenAPI (Swagger)
+**Tools & Patterns:** SQLAlchemy · Alembic · Celery · JWT · REST API · OpenAPI (Swagger)  
+**AI / LLM:** LangChain · Ollama · RAG
 
 ---
 
 ## Projects
 
-### [Auto Dealer CRM](https://github.com/andriisyniuchenko/auto_dealer_crm)
+### Auto Dealer Ecosystem
+
+A multi-service dealership platform built as separate, independently deployable services that work together.
+
+---
+
+#### [Auto Dealer CRM](https://github.com/andriisyniuchenko/auto_dealer_crm)
 > FastAPI · PostgreSQL · SQLAlchemy · Alembic · JWT
 
 Backend CRM system that models how a real dealership sales team operates — from lead intake to closed deals.
 
 📹 [Watch demo video](https://youtu.be/8uaZtSdtifc)
+
 - Role-based access control (General Manager, Manager, Finance Manager, Salesperson)
 - Lead assignment, shared ownership (50/50 split), and stale lead detection
 - Full lead timeline: notes, activities, appointments, deal history
@@ -32,6 +39,20 @@ Backend CRM system that models how a real dealership sales team operates — fro
 - Manager-controlled user registration — no public sign-up
 - Structured architecture: routers / services / models / schemas
 - 43 pytest tests covering auth, RBAC, and business logic — GitHub Actions CI runs on every push
+
+---
+
+#### [Auto Dealer Conversation Service](https://github.com/andriisyniuchenko/auto-dealer-conversation-service)
+> FastAPI · Jinja2 · PostgreSQL · SQLAlchemy · ChromaDB · LangChain · Ollama · Docker
+
+Full-stack dealership web app ("Galaxy Motors") with a browsable inventory of 60 vehicles — actively being extended with an AI-powered chat assistant backed by RAG.
+
+- Browse and filter 60 vehicles (new 2026 Subaru lineup + 30 used vehicles)
+- Filter by condition, make, year, mileage, and price range
+- Individual vehicle detail pages with specs and photos
+- Conversation history stored in PostgreSQL (`chat_sessions`, `chat_messages`)
+- **Planned:** AI chat assistant — semantic vehicle search via ChromaDB, LangChain orchestration, local LLM via Ollama (llama3.2)
+- Fully containerized: FastAPI app + PostgreSQL + ChromaDB via Docker Compose
 
 ---
 
