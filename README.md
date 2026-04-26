@@ -1,80 +1,93 @@
 # Andrii Syniuchenko
+ 
 Backend developer based in Seattle, WA.  
 Focused on Python (FastAPI, Django) — building production-oriented backend systems with real business logic.
-
+ 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/andrii-syniuchenko)
-
+ 
 ---
-
+ 
 ## Tech Stack
-
+ 
 **Languages:** Python  
 **Frameworks:** FastAPI · Django  
 **Databases:** PostgreSQL · Redis · ChromaDB  
-**Infrastructure:** Docker · Docker Compose · Linux  
-**Tools & Patterns:** SQLAlchemy · Alembic · Celery · JWT · REST API · OpenAPI (Swagger)  
-**AI / LLM:** LangChain · Ollama · RAG
-
+**Infrastructure:** Docker · Docker Compose · GitHub Actions · Linux  
+**Tools & Patterns:** SQLAlchemy · Alembic · Celery · JWT · REST API · OpenAPI (Swagger) · httpx · Pydantic v2  
+**AI / LLM:** LangChain · Ollama · RAG (in progress)
+ 
 ---
-
+ 
 ## Projects
-
+ 
 ### Auto Dealer Ecosystem
-
-A multi-service dealership platform built as separate, independently deployable services that work together.
-
+ 
+A two-service microservice system for a fictional dealership. The website and CRM are independently deployable and communicate over HTTP with API key authentication.
+ 
+```
+┌──────────────────────────────┐        ┌──────────────────────────────┐
+│  Customer-facing Website     │        │  Auto Dealer CRM             │
+│  auto-dealer-conversation-   │  HTTP  │  auto_dealer_crm             │
+│  service · localhost:8001    │──POST──▶  localhost:8000              │
+│                              │  Key   │                              │
+│  Inventory browsing + forms  │        │  Internal lead & deal mgmt   │
+└──────────────────────────────┘        └──────────────────────────────┘
+```
+ 
 ---
-
+ 
 #### [Auto Dealer CRM](https://github.com/andriisyniuchenko/auto_dealer_crm)
-> FastAPI · PostgreSQL · SQLAlchemy · Alembic · JWT
-
-Backend CRM system that models how a real dealership sales team operates — from lead intake to closed deals.
-
+> FastAPI · PostgreSQL 16 · SQLAlchemy 2.0 · Alembic · JWT · Pydantic v2 · Docker · GitHub Actions CI · pytest
+ 
+[![CI](https://github.com/andriisyniuchenko/auto_dealer_crm/actions/workflows/ci.yml/badge.svg)](https://github.com/andriisyniuchenko/auto_dealer_crm/actions/workflows/ci.yml)
+ 
+Backend CRM system that models how a real dealership sales team operates — from lead intake to closed deals. Ships with both a web UI and a REST API, fully containerized, one-command startup.
+ 
 📹 [Watch demo video](https://youtu.be/8uaZtSdtifc)
-
+ 
 - Role-based access control (General Manager, Manager, Finance Manager, Salesperson)
-- Lead assignment, shared ownership (50/50 split), and stale lead detection
+- Lead assignment, shared ownership (50/50 split), and stale lead detection (7+ days no contact)
 - Full lead timeline: notes, activities, appointments, deal history
-- Split deal credit system with per-salesperson statistics
+- Split deal credit system with per-salesperson leaderboard
+- Public lead intake API — `POST /api/v1/leads/public` secured with `X-API-Key`, used by the website service
+- JWT cookie-based sessions for web UI + Bearer token support for API
 - Manager-controlled user registration — no public sign-up
 - Structured architecture: routers / services / models / schemas
-- 43 pytest tests covering auth, RBAC, and business logic — GitHub Actions CI runs on every push
-
+- 48 pytest tests covering auth, RBAC, leads, appointments, and deals — GitHub Actions CI runs on every push
 ---
-
+ 
 #### [Auto Dealer Conversation Service](https://github.com/andriisyniuchenko/auto-dealer-conversation-service)
-> FastAPI · Jinja2 · PostgreSQL · SQLAlchemy · ChromaDB · LangChain · Ollama · Docker
-
-Full-stack dealership web app ("Galaxy Motors") with a browsable inventory of 60 vehicles — actively being extended with an AI-powered chat assistant backed by RAG.
-
-- Browse and filter 60 vehicles (new 2026 Subaru lineup + 30 used vehicles)
-- Filter by condition, make, year, mileage, and price range
-- Individual vehicle detail pages with specs and photos
-- Conversation history stored in PostgreSQL (`chat_sessions`, `chat_messages`)
-- **Planned:** AI chat assistant — semantic vehicle search via ChromaDB, LangChain orchestration, local LLM via Ollama (llama3.2)
-- Fully containerized: FastAPI app + PostgreSQL + ChromaDB via Docker Compose
-
+> FastAPI · PostgreSQL 15 · SQLAlchemy 2.0 async · asyncpg · httpx · Jinja2 · Bootstrap 5 · ChromaDB · Alembic · Docker
+ 
+Full-stack customer-facing dealership website with a browsable inventory of 60 vehicles. Integrated with the CRM service — lead forms submit directly to the CRM via HTTP. AI chat assistant is in progress.
+ 
+- Browse and filter 60 vehicles (30 new 2026 Subaru + 30 used) by make, year, mileage, price, condition
+- Individual vehicle detail pages with specs, photos, and a lead submission form
+- Lead form sends `POST` to the CRM service via `httpx.AsyncClient` with API key auth
+- Fully async stack: `create_async_engine` + `asyncpg` throughout
+- Conversation history schema in place: `chat_sessions` and `chat_messages` in PostgreSQL
+- Containerized: FastAPI app + PostgreSQL + ChromaDB via Docker Compose
+- **In progress:** AI chat assistant — semantic vehicle search via ChromaDB, LangChain orchestration, local LLM via Ollama (llama3.2)
 ---
-
+ 
 ### [Notification Service](https://github.com/andriisyniuchenko/notification-service)
 > FastAPI · Celery · Redis · PostgreSQL · Docker
-
+ 
 Standalone async notification service for email, SMS, and push delivery — built to mirror how real production systems handle background job queues.
-
+ 
 - API accepts a request, saves it as `pending`, and immediately returns — Celery worker processes it asynchronously
 - Notification status machine: `pending → retrying → sent / failed`
 - Retry logic: up to 3 attempts with 5-second delay; intentional 10% failure rate to demonstrate retry behavior
 - Workers scale independently from the API layer
 - Minimal live UI that polls status updates every 3 seconds without page reload
 - Fully containerized with Docker Compose (web, worker, db, redis)
-
 ---
-
+ 
 ### [Subscription Tracker](https://github.com/andriisyniuchenko/subscription-tracker)
 > Django · PostgreSQL · Docker
-
+ 
 Django backend for tracking personal subscriptions and recurring expenses.
-
+ 
 - User authentication and per-user data isolation
 - Full CRUD for subscriptions with active/expired tracking
 - Monthly cost dashboard
