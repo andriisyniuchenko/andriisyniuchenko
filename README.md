@@ -84,7 +84,9 @@ Standalone async notification service for email, SMS, and push delivery — buil
 ---
  
 ### [Subscription Tracker](https://github.com/andriisyniuchenko/subscription-tracker)
-> Django · PostgreSQL · Docker
+> Django · PostgreSQL · Docker · GitHub Actions CI
+
+[![CI](https://github.com/andriisyniuchenko/subscription-tracker/actions/workflows/ci.yml/badge.svg)](https://github.com/andriisyniuchenko/subscription-tracker/actions/workflows/ci.yml)
  
 Django backend for tracking personal subscriptions and recurring expenses.
  
