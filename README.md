@@ -58,6 +58,8 @@ Backend CRM system that models how a real dealership sales team operates — fro
  
 #### [Auto Dealer Conversation Service](https://github.com/andriisyniuchenko/auto-dealer-conversation-service)
 > FastAPI · PostgreSQL 15 · SQLAlchemy 2.0 async · asyncpg · httpx · Jinja2 · Bootstrap 5 · ChromaDB · Alembic · Docker
+
+[![CI](https://github.com/andriisyniuchenko/auto-dealer-conversation-service/actions/workflows/ci.yml/badge.svg)](https://github.com/andriisyniuchenko/auto-dealer-conversation-service/actions/workflows/ci.yml)
  
 Full-stack customer-facing dealership website with a browsable inventory of 60 vehicles. Integrated with the CRM service — lead forms submit directly to the CRM via HTTP. AI chat assistant is in progress.
  
@@ -67,6 +69,7 @@ Full-stack customer-facing dealership website with a browsable inventory of 60 v
 - Fully async stack: `create_async_engine` + `asyncpg` throughout
 - Conversation history schema in place: `chat_sessions` and `chat_messages` in PostgreSQL
 - Containerized: FastAPI app + PostgreSQL + ChromaDB via Docker Compose
+- 15 pytest tests covering inventory routes, filters, lead form validation, and CRM integration — GitHub Actions CI runs on every push
 - **In progress:** AI chat assistant — semantic vehicle search via ChromaDB, LangChain orchestration, local LLM via Ollama (llama3.2)
 ---
  
