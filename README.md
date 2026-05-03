@@ -11,10 +11,10 @@ Focused on Python (FastAPI, Django) — building production-oriented backend sys
  
 **Languages:** Python  
 **Frameworks:** FastAPI · Django  
-**Databases:** PostgreSQL · Redis · ChromaDB  
+**Databases:** PostgreSQL · Redis · OpenSearch 
 **Infrastructure:** Docker · Docker Compose · GitHub Actions · Linux  
 **Tools & Patterns:** SQLAlchemy · Alembic · Celery · JWT · REST API · OpenAPI (Swagger) · httpx · Pydantic v2  
-**AI / LLM:** LangChain · Ollama · RAG (in progress)
+**AI / LLM:** LangChain · Ollama · RAG
  
 ---
  
@@ -71,6 +71,19 @@ Full-stack customer-facing dealership website with a browsable inventory of 60 v
 - Containerized: FastAPI app + PostgreSQL + ChromaDB via Docker Compose
 - 15 pytest tests covering inventory routes, filters, lead form validation, and CRM integration — GitHub Actions CI runs on every push
 - **In progress:** AI chat assistant — semantic vehicle search via ChromaDB, LangChain orchestration, local LLM via Ollama (llama3.2)
+---
+ 
+### [Doc Helper](https://github.com/andriisyniuchenko/doc-helper)
+> LangChain · OpenSearch · Ollama · Streamlit · Docker
+ 
+A local RAG-based documentation assistant that answers questions about LangChain. Crawls the official docs, indexes them into a vector store, and uses a local LLM to generate answers — no OpenAI required, everything runs locally.
+ 
+- Crawls `python.langchain.com` via Tavily, chunks with `RecursiveCharacterTextSplitter`
+- Embeddings generated with Ollama (`nomic-embed-text`), stored in OpenSearch 3.6
+- On each query: question embedded → kNN search returns top-5 chunks → passed to `llama3.2:3b` via Ollama
+- Out-of-scope questions correctly refused
+- Observability via LangSmith
+- Fully containerized with Docker Compose; Makefile for one-command setup
 ---
  
 ### [Notification Service](https://github.com/andriisyniuchenko/notification-service)
