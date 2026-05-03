@@ -11,7 +11,7 @@ Focused on Python (FastAPI, Django) — building production-oriented backend sys
  
 **Languages:** Python  
 **Frameworks:** FastAPI · Django  
-**Databases:** PostgreSQL · Redis · OpenSearch 
+**Databases:** PostgreSQL · Redis · OpenSearch   
 **Infrastructure:** Docker · Docker Compose · GitHub Actions · Linux  
 **Tools & Patterns:** SQLAlchemy · Alembic · Celery · JWT · REST API · OpenAPI (Swagger) · httpx · Pydantic v2  
 **AI / LLM:** LangChain · Ollama · RAG
