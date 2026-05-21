@@ -1,7 +1,6 @@
 # Andrii Syniuchenko
  
-Backend developer based in Seattle, WA.  
-Focused on Python (FastAPI, Django) — building production-oriented backend systems with real business logic.
+Backend developer based in Seattle, WA. Focused on Python (FastAPI, Django) and AI-powered systems (LangChain, LangGraph, RAG) — building production-oriented backend services with real business logic.
  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/andrii-syniuchenko)
  
