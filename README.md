@@ -11,10 +11,10 @@ Focused on Python (FastAPI, Django) — building production-oriented backend sys
  
 **Languages:** Python  
 **Frameworks:** FastAPI · Django  
-**Databases:** PostgreSQL · Redis · OpenSearch   
+**Databases:** PostgreSQL · Redis · OpenSearch · MongoDB  
 **Infrastructure:** Docker · Docker Compose · GitHub Actions · Linux  
 **Tools & Patterns:** SQLAlchemy · Alembic · Celery · JWT · REST API · OpenAPI (Swagger) · httpx · Pydantic v2  
-**AI / LLM:** LangChain · Ollama · RAG
+**AI / LLM:** LangChain · LangGraph · Ollama · Groq · OpenAI · Anthropic · RAG
  
 ---
  
@@ -57,20 +57,19 @@ Backend CRM system that models how a real dealership sales team operates — fro
 ---
  
 #### [Auto Dealer Conversation Service](https://github.com/andriisyniuchenko/auto-dealer-conversation-service)
-> FastAPI · PostgreSQL 15 · SQLAlchemy 2.0 async · asyncpg · httpx · Jinja2 · Bootstrap 5 · ChromaDB · Alembic · Docker
-
+> FastAPI · PostgreSQL 15 · SQLAlchemy 2.0 async · asyncpg · LangGraph · LangChain · Groq · OpenSearch · Ollama · httpx · Jinja2 · Bootstrap 5 · Alembic · Docker
+ 
 [![CI](https://github.com/andriisyniuchenko/auto-dealer-conversation-service/actions/workflows/ci.yml/badge.svg)](https://github.com/andriisyniuchenko/auto-dealer-conversation-service/actions/workflows/ci.yml)
  
-Full-stack customer-facing dealership website with a browsable inventory of 60 vehicles. Integrated with the CRM service — lead forms submit directly to the CRM via HTTP. AI chat assistant is in progress.
+Full-stack customer-facing dealership website with a browsable inventory of 60 vehicles and an AI chat assistant (Jessica) powered by LangGraph and RAG. Integrated with the CRM service — lead forms and chat transcripts submit directly to the CRM via HTTP.
  
-- Browse and filter 60 vehicles (30 new 2026 Subaru + 30 used) by make, year, mileage, price, condition
+- Browse and filter 60 vehicles by make, year, mileage, price, and condition
 - Individual vehicle detail pages with specs, photos, and a lead submission form
-- Lead form sends `POST` to the CRM service via `httpx.AsyncClient` with API key auth
+- **AI chat assistant (Jessica)** — ReAct-style LangGraph agent with RAG: embeds queries via Ollama (`nomic-embed-text`), runs hybrid KNN + BM25 search on OpenSearch, streams responses token by token via SSE; LLM provider swappable via env vars (Groq, OpenAI, Anthropic)
+- Agent tools: `search_vehicles` (semantic + keyword search) and `submit_lead` (sends contact details to CRM)
+- Chat transcript automatically saved to CRM when a lead is collected, displayed as chat bubbles on the lead detail page
 - Fully async stack: `create_async_engine` + `asyncpg` throughout
-- Conversation history schema in place: `chat_sessions` and `chat_messages` in PostgreSQL
-- Containerized: FastAPI app + PostgreSQL + ChromaDB via Docker Compose
-- 15 pytest tests covering inventory routes, filters, lead form validation, and CRM integration — GitHub Actions CI runs on every push
-- **In progress:** AI chat assistant — semantic vehicle search via ChromaDB, LangChain orchestration, local LLM via Ollama (llama3.2)
+- Containerized via Docker Compose; 15 pytest tests — GitHub Actions CI runs on every push
 ---
  
 ### [Doc Helper](https://github.com/andriisyniuchenko/doc-helper)
