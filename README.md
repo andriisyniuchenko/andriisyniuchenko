@@ -72,19 +72,6 @@ Full-stack customer-facing dealership website with a browsable inventory of 60 v
 - Containerized via Docker Compose; 15 pytest tests — GitHub Actions CI runs on every push
 ---
  
-### [Doc Helper](https://github.com/andriisyniuchenko/doc-helper)
-> LangChain · OpenSearch · Ollama · Streamlit · Docker
- 
-A local RAG-based documentation assistant that answers questions about LangChain. Crawls the official docs, indexes them into a vector store, and uses a local LLM to generate answers — no OpenAI required, everything runs locally.
- 
-- Crawls `python.langchain.com` via Tavily, chunks with `RecursiveCharacterTextSplitter`
-- Embeddings generated with Ollama (`nomic-embed-text`), stored in OpenSearch 3.6
-- On each query: question embedded → kNN search returns top-5 chunks → passed to `llama3.2:3b` via Ollama
-- Out-of-scope questions correctly refused
-- Observability via LangSmith
-- Fully containerized with Docker Compose; Makefile for one-command setup
----
- 
 ### [Notification Service](https://github.com/andriisyniuchenko/notification-service)
 > FastAPI · Celery · Redis · PostgreSQL · Docker
  
@@ -96,16 +83,3 @@ Standalone async notification service for email, SMS, and push delivery — buil
 - Workers scale independently from the API layer
 - Minimal live UI that polls status updates every 3 seconds without page reload
 - Fully containerized with Docker Compose (web, worker, db, redis)
----
- 
-### [Subscription Tracker](https://github.com/andriisyniuchenko/subscription-tracker)
-> Django · PostgreSQL · Docker · GitHub Actions CI
-
-[![CI](https://github.com/andriisyniuchenko/subscription-tracker/actions/workflows/ci.yml/badge.svg)](https://github.com/andriisyniuchenko/subscription-tracker/actions/workflows/ci.yml)
- 
-Django backend for tracking personal subscriptions and recurring expenses.
- 
-- User authentication and per-user data isolation
-- Full CRUD for subscriptions with active/expired tracking
-- Monthly cost dashboard
-- Seed script for demo data
