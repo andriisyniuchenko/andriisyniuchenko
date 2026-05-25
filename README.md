@@ -1,84 +1,83 @@
 # Andrii Syniuchenko
- 
-Backend developer based in Seattle, WA. Focused on Python (FastAPI, Django) and AI-powered systems (LangChain, LangGraph, RAG) — building production-oriented backend services with real business logic.
- 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/andrii-syniuchenko)
- 
+
+Former CS teacher from Ukraine, now based in Seattle building backend systems. Regional chess champion — quit while ahead. Rollerblader. Undefeated — hills excluded. The worst tennis player you'll ever meet, but I still show up. TIME Person of the Year, 2006.
+
 ---
- 
+
 ## Tech Stack
- 
+
 **Languages:** Python  
 **Frameworks:** FastAPI · Django  
 **Databases:** PostgreSQL · Redis · OpenSearch · MongoDB  
 **Infrastructure:** Docker · Docker Compose · GitHub Actions · Linux  
-**Tools & Patterns:** SQLAlchemy · Alembic · Celery · JWT · REST API · OpenAPI (Swagger) · httpx · Pydantic v2  
-**AI / LLM:** LangChain · LangGraph · Ollama · Groq · OpenAI · Anthropic · RAG
- 
+**Tools & Patterns:** SQLAlchemy · Alembic · Celery · JWT · REST API · OpenAPI · httpx · Pydantic v2  
+**AI / LLM:** LangChain · LangGraph · Ollama · RAG · OpenAI · Anthropic · Google · Groq
+
 ---
- 
+
 ## Projects
- 
+
 ### Auto Dealer Ecosystem
- 
-A two-service microservice system for a fictional dealership. The website and CRM are independently deployable and communicate over HTTP with API key authentication.
- 
+
+Two independently deployable services that communicate over HTTP. Built as a system, not two separate tutorials.
+
 ```
 ┌──────────────────────────────┐        ┌──────────────────────────────┐
 │  Customer-facing Website     │        │  Auto Dealer CRM             │
 │  auto-dealer-conversation-   │  HTTP  │  auto_dealer_crm             │
 │  service · localhost:8001    │──POST──▶  localhost:8000              │
 │                              │  Key   │                              │
-│  Inventory browsing + forms  │        │  Internal lead & deal mgmt   │
+│  Inventory browsing + chat   │        │  Internal lead & deal mgmt   │
 └──────────────────────────────┘        └──────────────────────────────┘
 ```
- 
+
 ---
- 
+
 #### [Auto Dealer CRM](https://github.com/andriisyniuchenko/auto_dealer_crm)
-> FastAPI · PostgreSQL 16 · SQLAlchemy 2.0 · Alembic · JWT · Pydantic v2 · Docker · GitHub Actions CI · pytest
- 
-[![CI](https://github.com/andriisyniuchenko/auto_dealer_crm/actions/workflows/ci.yml/badge.svg)](https://github.com/andriisyniuchenko/auto_dealer_crm/actions/workflows/ci.yml)
- 
-Backend CRM system that models how a real dealership sales team operates — from lead intake to closed deals. Ships with both a web UI and a REST API, fully containerized, one-command startup.
- 
-📹 [Watch demo video](https://youtu.be/8uaZtSdtifc)
- 
-- Role-based access control (General Manager, Manager, Finance Manager, Salesperson)
-- Lead assignment, shared ownership (50/50 split), and stale lead detection (7+ days no contact)
-- Full lead timeline: notes, activities, appointments, deal history
-- Split deal credit system with per-salesperson leaderboard
-- Public lead intake API — `POST /api/v1/leads/public` secured with `X-API-Key`, used by the website service
-- JWT cookie-based sessions for web UI + Bearer token support for API
-- Manager-controlled user registration — no public sign-up
-- Structured architecture: routers / services / models / schemas
-- 48 pytest tests covering auth, RBAC, leads, appointments, and deals — GitHub Actions CI runs on every push
+> FastAPI · PostgreSQL · SQLAlchemy · Alembic · JWT · Pydantic v2 · Docker · GitHub Actions · pytest
+
+Most CRMs are cluttered with features nobody uses. This one isn't. Built to model how a real dealership sales team actually operates — lead intake, deal tracking, role-based access — without the noise.
+
+- Role-based access control with per-role lead and deal visibility
+- Lead assignment, shared ownership with 50/50 deal credit split, stale lead detection
+- Full lead timeline: notes, calls, appointments, deal history
+- JWT auth: cookie-based sessions for web UI, Bearer token for API
+- Public lead intake API secured with `X-API-Key` — used by the conversation service
+- 48 pytest tests across 4 modules; GitHub Actions CI on every push
+
+📹 [Watch demo](https://youtu.be/8uaZtSdtifc)
+
 ---
- 
+
 #### [Auto Dealer Conversation Service](https://github.com/andriisyniuchenko/auto-dealer-conversation-service)
-> FastAPI · PostgreSQL 15 · SQLAlchemy 2.0 async · asyncpg · LangGraph · LangChain · Groq · OpenSearch · Ollama · httpx · Jinja2 · Bootstrap 5 · Alembic · Docker
- 
-[![CI](https://github.com/andriisyniuchenko/auto-dealer-conversation-service/actions/workflows/ci.yml/badge.svg)](https://github.com/andriisyniuchenko/auto-dealer-conversation-service/actions/workflows/ci.yml)
- 
-Full-stack customer-facing dealership website with a browsable inventory of 60 vehicles and an AI chat assistant (Jessica) powered by LangGraph and RAG. Integrated with the CRM service — lead forms and chat transcripts submit directly to the CRM via HTTP.
- 
-- Browse and filter 60 vehicles by make, year, mileage, price, and condition
-- Individual vehicle detail pages with specs, photos, and a lead submission form
-- **AI chat assistant (Jessica)** — ReAct-style LangGraph agent with RAG: embeds queries via Ollama (`nomic-embed-text`), runs hybrid KNN + BM25 search on OpenSearch, streams responses token by token via SSE; LLM provider swappable via env vars (Groq, OpenAI, Anthropic)
-- Agent tools: `search_vehicles` (semantic + keyword search) and `submit_lead` (sends contact details to CRM)
-- Chat transcript automatically saved to CRM when a lead is collected, displayed as chat bubbles on the lead detail page
-- Fully async stack: `create_async_engine` + `asyncpg` throughout
-- Containerized via Docker Compose; 15 pytest tests — GitHub Actions CI runs on every push
+> FastAPI · PostgreSQL · SQLAlchemy async · asyncpg · LangGraph · LangChain · OpenSearch · Ollama · Docker
+
+This is the kind of project that doesn't write itself. Not CRUD — actual engineering: state machines, hybrid search pipelines, streaming, an AI agent that has to behave reliably in production.
+
+The first version used a single large prompt to handle everything. It worked most of the time. Most of the time isn't good enough when you're capturing sales leads. The current version moves all business logic into a deterministic LangGraph graph — the LLM handles conversation, Python handles everything else.
+
+- AI assistant (Jessica) answers inventory questions, collects contact details, and books test drives
+- Hybrid OpenSearch search: semantic KNN + BM25 keyword, 40/60 weighted
+- SSE streaming — responses appear token by token in the browser
+- LLM provider swappable via env vars — no code changes needed
+- 52 pytest tests: 37 covering agent routing logic, 15 covering API and inventory
+- Estimated cost: ~$1.50–$30 per 1,000 conversations depending on model
+
 ---
- 
+
 ### [Notification Service](https://github.com/andriisyniuchenko/notification-service)
 > FastAPI · Celery · Redis · PostgreSQL · Docker
- 
-Standalone async notification service for email, SMS, and push delivery — built to mirror how real production systems handle background job queues.
- 
-- API accepts a request, saves it as `pending`, and immediately returns — Celery worker processes it asynchronously
-- Notification status machine: `pending → retrying → sent / failed`
-- Retry logic: up to 3 attempts with 5-second delay; intentional 10% failure rate to demonstrate retry behavior
+
+Background job queue for async notification delivery. Built to understand how production systems handle retries, failure states, and worker scaling — not to add another project to a list.
+
+- Status machine: `pending → retrying → sent / failed`
+- Retry logic: 3 attempts, 5-second delay, intentional 10% failure rate
 - Workers scale independently from the API layer
-- Minimal live UI that polls status updates every 3 seconds without page reload
-- Fully containerized with Docker Compose (web, worker, db, redis)
+
+---
+
+## Certifications
+
+- [FastAPI — Udemy](https://www.udemy.com/certificate/UC-cc0e5848-595b-4f1c-8530-c3b82c7c94c8/)
+- [Django — Udemy](https://www.udemy.com/certificate/UC-f68b5b64-eba9-4f0c-b2a7-f6054db803ee/)
+- [LangChain & LangGraph — Udemy](https://www.udemy.com/certificate/UC-9065b9a9-9eb6-42e4-b4d0-659c42f9a4f5/)
