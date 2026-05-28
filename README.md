@@ -81,3 +81,4 @@ Background job queue for async notification delivery. Built to understand how pr
 - [FastAPI — Udemy](https://www.udemy.com/certificate/UC-cc0e5848-595b-4f1c-8530-c3b82c7c94c8/)
 - [Django — Udemy](https://www.udemy.com/certificate/UC-f68b5b64-eba9-4f0c-b2a7-f6054db803ee/)
 - [LangChain & LangGraph — Udemy](https://www.udemy.com/certificate/UC-9065b9a9-9eb6-42e4-b4d0-659c42f9a4f5/)
+- [Introduction to Model Context Protocol - Anthropic](https://verify.skilljar.com/c/vq5ozrabikbm)
