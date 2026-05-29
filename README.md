@@ -52,7 +52,7 @@ Most CRMs are cluttered with features nobody uses. This one isn't. Built to mode
 #### [Auto Dealer Conversation Service](https://github.com/andriisyniuchenko/auto-dealer-conversation-service)
 > FastAPI · PostgreSQL · SQLAlchemy async · asyncpg · LangGraph · LangChain · OpenSearch · Ollama · Docker
 
-This is the kind of project that doesn't write itself. Not CRUD — actual engineering: state machines, hybrid search pipelines, streaming, an AI agent that has to behave reliably in production.
+This is the kind of project that doesn't write itself. Built around state machines, hybrid search pipelines, streaming, and an AI agent that must reliably capture leads and book test drives.
 
 The first version used a single large prompt to handle everything. It worked most of the time. Most of the time isn't good enough when you're capturing sales leads. The current version moves all business logic into a deterministic LangGraph graph — the LLM handles conversation, Python handles everything else.
 
